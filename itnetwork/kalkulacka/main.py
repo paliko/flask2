@@ -35,7 +35,7 @@ def kalkulacka():
     else:
         vysledek = "Chyba"
 
-    return render_template("kalkulacka1.html", vysledek = vysledek) #Vrátíme naší šablonu s výsledkem
+    return render_template("kalkulacka.html", vysledek = vysledek) #Vrátíme naší šablonu s výsledkem
 
 if __name__ == "__main__":
     app.run(debug=True)
