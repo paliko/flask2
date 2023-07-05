@@ -1,7 +1,7 @@
 {% extends "base.html" %} <! --nyní dědí z tohoto hlavního a vykresluje se tedy do něj.-->
 {% block header %}
 Zde je něco zajímavého<br>
-{{ super() }} <! -- vykresli header z base-->
+{{ super() }} <! -- vykresli header z base, kdyz chci to same pro footer musim pridat block footer a zese pouzit super()-->
 {% endblock %}
 
 {% block content %}
@@ -26,4 +26,9 @@ Zde je něco zajímavého<br>
     {% endfor %}
     <hr>
     Výsledek: {% if vysledek %} {{ vysledek }} {% else %} Vyplň formulář {% endif %}
+{% endblock %}
+
+{% block footer %}
+Zde je footer<br>
+{{ super() }} <! -- vykresli header z base-->
 {% endblock %}
