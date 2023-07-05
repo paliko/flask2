@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Můj web ve Flasku</title>
+    <style>
+        html, body{
+            margin: 0;
+        }
+        #content{
+            margin: auto;
+            max-width: 75%;
+            min-height: 500%;
+            border: solid;
+            border-color: black;
+            border-width: 2px;
+            border-radius: 15px;
+            padding: 100px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        header{
+            min-height: 100px;
+            min-width: 100%;
+            background-color: #569ee2;
+            margin-bottom: 50px;
+            font-family: Arial Black;
+        }
+        footer{
+            position: absolute;
+            bottom: 0;
+            min-height: 120px;
+            min-width: 100%;
+            background-color: #569ee2;
+            font-family: Arial Black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        {% block header %}
+        Zde není nic zajímavého
+        {% endblock %}
+    </header>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        {% block footer %}
+        Prostý footer
+        {% endblock %}
+    </footer>
+</body>
+</html>
+
+<! -- zde jsme si definovali bloky header,content a footer a do bloků header a
+footer jsme vložili nějaký text. Ten se zobrazí na stránce
+dědící z této šablony (tedy podstránce) pouze pokud blok nepoužijeme nebo
+Jinja2 donutíme vyrenderovat obsah pomocí super()-->
