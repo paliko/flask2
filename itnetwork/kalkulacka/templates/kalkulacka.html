@@ -1,16 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-</head>
-<body>
+{% extends "base.html" %} <! --nyní dědí z tohoto hlavního a vykresluje se tedy do něj.-->
+{% block header %}
+Zde je něco zajímavého<br>
+{{ super() }} <! -- vykresli header z base-->
+{% endblock %}
+
+{% block content %}
     <form method="POST">
-        <input type="number" name="prvni_cislo">
-        <input type="text" name="operator">
-        <input type="number" name="druhe_cislo">
-        <input type="submit">
+        {{ form.hidden_tag() }}
+
+        <! -- instanci formuláře, který si automaticky vezme
+        data z requestu. Poté zkontrolujeme, zda byl formulář odeslán a provedeme
+        validaci dat. Pokud vše proběhlo úspěšně, data načteme a vrátíme
+        výsledek -->
+        <table>
+            <tr><td>{{ form.prvni_cislo.label }}:</td><td>{{ form.prvni_cislo }}</td></tr>
+            <tr><td>{{ form.operator.label }}: </td><td>{{ form.operator }}</td></tr>
+            <tr><td>{{ form.druhe_cislo.label }}: </td><td>{{ form.druhe_cislo }}</td></tr>
+            <tr><td></td><td><input type="submit" style="width: 100%;"></td></tr>
+        </table>
     </form>
+    {% for field, errors in form.errors.items() %}
+        {% for error in errors %}
+            <span style="color: red;">Chyba pole - {{ field }} hláška - {{ error }}</span><br>
+        {% endfor %}
+    {% endfor %}
     <hr>
-    Výsledek: {{ vysledek }}
-</body>
-</html>
+    Výsledek: {% if vysledek %} {{ vysledek }} {% else %} Vyplň formulář {% endif %}
+{% endblock %}
