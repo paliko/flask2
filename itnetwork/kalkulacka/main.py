@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 #comment2
 
 from flask_wtf import FlaskForm
-from wtforms import SelectField, IntegerField, widgets
+from wtforms import SelectField, IntegerField, widgets, SubmitField
 
 app = Flask(__name__)
 # Musíme nastavit SECRET_KEY, pokud chceme používat CSRF
@@ -12,6 +12,9 @@ class MujFormular(FlaskForm):
     prvni_cislo = IntegerField("První Číslo", widget = widgets.Input(input_type = "number"))
     operator = SelectField("Operátor", choices=[("+" ,"+"), ("-", "-"), ("*", "*"), ("/", "/")])
     druhe_cislo = IntegerField("Druhé Číslo", widget = widgets.Input(input_type = "number"))
+    submit = SubmitField("Odeslat", render_kw = dict(class_ = "btn btn-outline-primary btn-block"))
+    # render_kw pomocí kterého můžeme přidat vygenerovanému kódů například třídu, hodnotu a 
+    # další atributy
 
 @app.route("/", methods = ["GET", "POST"])
 def kalkulacka():
