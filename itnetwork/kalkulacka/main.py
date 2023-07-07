@@ -52,7 +52,8 @@ def galerie():
         nazev = secure_filename(soubor.filename) #zkontrolujeme pomocí nástroje
             # z knihovny werkzeug, na které mimochodem běží Flask, zda je název souboru bezpečný, 
         soubor.save(os.path.join(app.config['UPLOAD_FOLDER'], nazev))
-    return render_template("galerie.html", form = form)
+        obrazky = os.listdir(app.static_folder + "/uploads")
+    return render_template("galerie.html", form = form, obrazky=obrazky)
 
 
 if __name__ == "__main__":

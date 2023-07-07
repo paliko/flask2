@@ -19,4 +19,7 @@ Galerie
     {% endfor %}
     <hr>
     </div>
+    {% for obrazek in obrazky %}
+    <img src="{{ url_for('static', filename='uploads/' + obrazek) }}">
+    {% endfor %}
 {% endblock %}
