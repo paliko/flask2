@@ -4,11 +4,13 @@ from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import SelectField, IntegerField, widgets, SubmitField
 
+
 # imports for uploading files:
 from wtforms import FileField
 from flask_wtf.file import FileRequired
 from werkzeug.utils import secure_filename
 import os
+
 
 
 app = Flask(__name__)
@@ -54,6 +56,7 @@ def galerie():
         soubor.save(os.path.join(app.config['UPLOAD_FOLDER'], nazev))
         obrazky = os.listdir(app.static_folder + "/uploads")
     return render_template("galerie.html", form = form, obrazky=obrazky)
+
 
 
 if __name__ == "__main__":
